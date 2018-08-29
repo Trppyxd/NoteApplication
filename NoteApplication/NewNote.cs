@@ -13,7 +13,9 @@ namespace NoteApplication
             Console.WriteLine("Enter content: ");
             string content = Console.ReadLine();
 
+
             XElement xml = XElement.Load("NoteList.xml");
+
             xml.Add(new XElement("Note"));
             xml.Add(new XAttribute("title", title));
             xml.Add(new XAttribute("content", content));
