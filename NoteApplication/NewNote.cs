@@ -8,17 +8,15 @@ namespace NoteApplication
         public void New()
         {
             Console.WriteLine("Enter title: ");
-            string title = Console.ReadLine();
+            string title = Convert.ToString(Console.ReadLine());
 
             Console.WriteLine("Enter content: ");
-            string content = Console.ReadLine();
+            string content = Convert.ToString(Console.ReadLine());
 
 
             XElement xml = XElement.Load("NoteList.xml");
 
-            xml.Add(new XElement("Note"));
-            xml.Add(new XAttribute("title", title));
-            xml.Add(new XAttribute("content", content));
+            xml.Add(new XElement("Note", new XAttribute("title", title), new XAttribute("content", content)));
 
             xml.Save("NoteList.xml");
         }

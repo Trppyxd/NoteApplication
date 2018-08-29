@@ -10,17 +10,19 @@ namespace NoteApplication
             XmlDocument doc = new XmlDocument();
             doc.Load("NoteList.xml");
 
-            Console.WriteLine("Enter the prefix of the note you wish to delete: ");
             int i = 1;
             foreach (XmlNode node in doc.DocumentElement.ChildNodes)
             {
-                Console.WriteLine(i.ToString() + "[{0}] ", i + node.Attributes["title"].InnerText);
+                Console.WriteLine("[" + i.ToString() + "] " + node.Attributes["title"].InnerText);
                 i++;
             }
-            int input = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the prefix of the note you wish to delete: ");
+            int input = int.Parse(Console.ReadLine()) - 1;
             XmlNode root = doc.DocumentElement;
 
             root.RemoveChild(root.ChildNodes[input]);
+            Console.WriteLine("Note {0} successfully deleted!", ++input);
+            
             doc.Save("NoteList.xml");
         }
     }
